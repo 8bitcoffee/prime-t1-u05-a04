@@ -17,7 +17,7 @@ function addToCollection(collection, title, artist, yearPublished){
 }
 
 // Testing by adding my 6 favorite albums in high school
-
+console.log("\n---addToCollection Test---");
 console.log(addToCollection(
   myCollection,
   "Sublime",
@@ -55,7 +55,7 @@ console.log(addToCollection(
   1979
   ));
 
-console.log(myCollection); // logging the appended myCollection array
+console.log("myCollection: ",myCollection); // logging the appended myCollection array
 
 function showCollection(collection){ // Logs all the albums to the console in a given array
   for (let album of collection){
@@ -63,6 +63,7 @@ function showCollection(collection){ // Logs all the albums to the console in a 
   }
 }
 
+console.log("\n---showCollection Test");
 showCollection(myCollection); // Testing using myCollection
 
 function findByArtist(collection, artist){ // Returns array of albums in collection with that given artist
@@ -74,12 +75,41 @@ function findByArtist(collection, artist){ // Returns array of albums in collect
   }
   return artistAlbums;
 }
-
+console.log("\n---findByArtist Test---");
 console.log(findByArtist(myCollection,"Minutemen"));
 // Should return an album (object) by Minutemen
 console.log(findByArtist(myCollection,"Nickelback"))
 // Should return an empty array since Nickelback is not in my collection
 
+
+// Added additional album to test results
+addToCollection(
+  myCollection,
+  "40oz to Freedom",
+  "Sublime",
+  1992
+)
+
+function search(collection,searchCriteria){
+  let searchResults = [];
+  if (
+    searchCriteria == undefined ||
+    !"artist" in searchCriteria ||
+    !"yearPublished" in searchCriteria ||
+    searchCriteria.artist == undefined ||
+    searchCriteria.yearPublished == undefined
+    ){
+    
+    return collection;
+  }
+  
+  for (let album of collection){
+    if (album.artist == searchCriteria.artist && album.yearPublished == searchCriteria.yearPublished){
+      searchResults.push(album);
+    }
+  }
+  return searchResults;
+}
 
 
 
