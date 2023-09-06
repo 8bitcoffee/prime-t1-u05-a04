@@ -436,15 +436,28 @@ function findByArtist(collection, artist){ // Returns array of albums in collect
   }
   return artistAlbums;
 }
+
 console.log("\n---findByArtist Test---");
+
 console.log(findByArtist(myCollection,"Stiff Little Fingers"));
 // Should return an album (object) by Stiff Little Fingers
 console.log(findByArtist(myCollection,"Nickelback"))
 // Should return an empty array since Nickelback is not in my collection
 
 function search(collection,searchCriteria){
-  let searchResults = [];
-  if (
+  let searchResults = []; // Return array
+
+  if ("trackName" in searchCriteria){
+    for (let album of collection){
+      for (let track of album.tracks){
+        if (track.name == searchCriteria.trackName){
+          searchResults.push(album);
+        }
+      }
+    }
+    return searchResults;
+  }
+  else if (
     searchCriteria == undefined ||
     !"artist" in searchCriteria ||
     !"yearPublished" in searchCriteria ||
@@ -454,14 +467,30 @@ function search(collection,searchCriteria){
     
     return collection;
   }
-  
-  for (let album of collection){
-    if (album.artist == searchCriteria.artist && album.yearPublished == searchCriteria.yearPublished){
-      searchResults.push(album);
+  else{
+    for (let album of collection){
+      if (
+        album.artist == searchCriteria.artist && 
+        album.yearPublished == searchCriteria.yearPublished
+      ){
+        searchResults.push(album);
+      }
     }
+    return searchResults;
   }
-  return searchResults;
 }
+
+console.log("---search Test---");
+
+// Should return the album "London Calling" by The Clash
+console.log(search(myCollection,{trackName:"Lost in the Supermarket"}));
+// Should return a blank array since The Clash didn't release an album in 1937
+// - This is despite track 6 "Spanish Bombs" about the bombing of Guernica
+console.log(search(myCollection,{artist:"The Clash",yearPublished:1937}));
+// Should return the album "Inflammable Material" by Stiff Little Fingers
+console.log(search(myCollection,{artist:"Stiff Little Fingers",yearPublished:1979}));
+// Should return the entire collection due to invalid search parameters
+console.log(search(myCollection,{}));
 
 
 
