@@ -55,6 +55,18 @@ console.log(addToCollection(
   1979
   ));
 
+console.log(myCollection); // logging the appended myCollection array
+
+function showCollection(collection){ // Logs all the albums to the console in a given array
+  for (let album of collection){
+    console.log(`${album.title} by ${album.artist} released in ${album.yearPublished}`);
+  }
+}
+
+showCollection(myCollection);
+
+
+
 
 
 
