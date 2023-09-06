@@ -16,6 +16,46 @@ function addToCollection(collection, title, artist, yearPublished){
   return newAlbum; // Returns newAlbum
 }
 
+// Testing by adding my 6 favorite albums in high school
+
+console.log(addToCollection(
+  myCollection,
+  "Sublime",
+  "Sublime",
+  1996
+  ));
+console.log(addToCollection(
+  myCollection,
+  "All Understood",
+  "Jay Buchanan",
+  2003
+  ));
+console.log(addToCollection(
+  myCollection,
+  "Stop Making Sense",
+  "Talking Heads",
+  1984
+  ));
+console.log(addToCollection(
+  myCollection,
+  "Inflammable Material",
+  "Stiff Little Fingers",
+  1979
+  ));
+console.log(addToCollection(
+  myCollection,
+  "Double Nickels on the Dime",
+  "Minutemen",
+  1984
+  ));
+console.log(addToCollection(
+  myCollection,
+  "London Calling",
+  "The Clash",
+  1979
+  ));
+
+
 
 
 
