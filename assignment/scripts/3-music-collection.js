@@ -63,8 +63,22 @@ function showCollection(collection){ // Logs all the albums to the console in a 
   }
 }
 
-showCollection(myCollection);
+showCollection(myCollection); // Testing using myCollection
 
+function findByArtist(collection, artist){ // Returns array of albums in collection with that given artist
+  let artistAlbums = [];
+  for (let album of collection){
+    if (album.artist == artist){
+      artistAlbums.push(album);
+    }
+  }
+  return artistAlbums;
+}
+
+console.log(findByArtist(myCollection,"Minutemen"));
+// Should return an album (object) by Minutemen
+console.log(findByArtist(myCollection,"Nickelback"))
+// Should return an empty array since Nickelback is not in my collection
 
 
 
